@@ -1,5 +1,6 @@
 /* SPDX-License-Identifier: GPL-2.0-only */
 
+#include <acpi/acpigen.h>
 #include <baseboard/variants.h>
 #include <chip.h>
 #include <arch/io.h>
@@ -85,4 +86,12 @@ void variant_devtree_update(void)
 	default:
 		break;
 	}
+}
+
+void variant_fill_ssdt(const struct device *dev)
+{
+	/* WIP: Enable IPU Camera */
+	acpigen_write_scope("\\_SB.PCI0.I2C2.CAM0");
+	acpigen_write_store_int_to_namestr(0x0F, "STAT");
+	acpigen_write_scope_end();
 }

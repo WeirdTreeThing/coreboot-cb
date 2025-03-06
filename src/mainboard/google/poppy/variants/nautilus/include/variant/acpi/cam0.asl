@@ -8,9 +8,10 @@ Scope (\_SB.PCI0.I2C2)
 		Name (_UID, 0)
 		Name (_DDN, "SONY IMX258 Camera") /* _DDN: DOS Device Name */
 
+		Name (STAT, 0x0)
 		Method (_STA, 0, NotSerialized)
 		{
-			Return (0x0F)
+			Return (STAT)
 		}
 
 		Name (_DEP, Package() { \_SB.PCI0.I2C2.PMIC })

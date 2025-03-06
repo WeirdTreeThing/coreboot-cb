@@ -43,10 +43,20 @@ static unsigned long mainboard_write_acpi_tables(const struct device *device,
 	return end_addr;
 }
 
+static void mainboard_fill_ssdt(const struct device *dev)
+{
+	variant_fill_ssdt(dev);
+}
+
+void __weak variant_fill_ssdt(const struct device *dev)
+{
+}
+
 static void mainboard_enable(struct device *dev)
 {
 	dev->ops->init = mainboard_init;
 	dev->ops->write_acpi_tables = mainboard_write_acpi_tables;
+	dev->ops->acpi_fill_ssdt = mainboard_fill_ssdt;
 }
 
 static void mainboard_chip_init(void *chip_info)

@@ -57,6 +57,7 @@ void variant_devtree_update(void);
 uint32_t variant_board_sku(void);
 void variant_smi_sleep(u8 slp_typ);
 void variant_final(void);
+void variant_fill_ssdt(const struct device *dev);
 
 struct nhlt;
 void variant_nhlt_init(struct nhlt *nhlt);
