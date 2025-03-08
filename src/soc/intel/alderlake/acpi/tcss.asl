@@ -331,8 +331,13 @@ Scope (\_SB)
 		Name (_CRS, ResourceTemplate () {
 			Memory32Fixed (ReadWrite, IOM_BASE_ADDRESS, IOM_BASE_SIZE)
 		})
+#if CONFIG(MAINBOARD_HAS_CHROMEOS)
+		/* ACPI_STATUS_DEVICE_ALL_ON */
+		Name (_STA, 0xF)
+#else
 		/* ACPI_STATUS_DEVICE_HIDDEN_ON */
 		Name (_STA, 0xB)
+#endif
 	}
 }
 
